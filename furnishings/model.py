@@ -12,7 +12,7 @@ class Product:
         return str(self)
 
     def __repr__(self):
-        return f"ID: {self.id}, Name: {self.name}, Description: {self.description}, Image: {self.image}, Price: {self.price}, City: {self.category}, Date: {self.date}\n"
+        return f"ID: {self.id}, Name: {self.name}, Description: {self.description}, Image: {self.image}, Price: {self.price}, Category: {self.category}, Date: {self.date}\n"
 
 class Order:
     def __init__(self, id, status, firstname, surname, email, phone, date, tours, total_cost):
