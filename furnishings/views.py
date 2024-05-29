@@ -9,13 +9,15 @@ main_bp = Blueprint('main', __name__)
 @main_bp.route('/')
 def index():
     categories = db.session.scalars(db.select(Category).order_by(Category.id)).all()
-    return render_template('base.html', categories=categories)
+    products=db.session.scalars(db.select(Product).order_by(Product.id)).all()
+    return render_template('index.html', categories=categories,products=products)
 
 # View all the tours of a city
 @main_bp.route('/products/<int:category_id>')
 def categories(category_id):
+    categories = db.session.scalars(db.select(Category).order_by(Category.id)).all()
     products = db.session.scalars(db.select(Product).where(Product.category_id==category_id)).all()
-    return render_template('product.html', products=products)
+    return render_template('product.html', products=products, categories=categories)
 
 
 # Stubs for routes not implemented yet

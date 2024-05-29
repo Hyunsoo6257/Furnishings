@@ -11,97 +11,35 @@
 <!-- marketing information -->
 <section>
   <!--Radio group-->
-  <div class="radio-group">
-    <input class="radio-input" name="radio-group" id="radio1" type="radio" />
-    <label class="radio-label" for="radio1">
-      <span class="radio-inner-circle"></span>
-      Living
-    </label>
+  <div>
+    {% for category in categories %}
 
-    <input class="radio-input" name="radio-group" id="radio2" type="radio" />
-    <label class="radio-label" for="radio2">
-      <span class="radio-inner-circle"></span>
-      Outdoor
-    </label>
+    <a href="{{url_for('main.categories', category_id=category.id)}}">
+      <input name="radio-group" type="radio" />
 
-    <input class="radio-input" name="radio-group" id="radio3" type="radio" />
-    <label class="radio-label" for="radio3">
-      <span class="radio-inner-circle"></span>
-      Lighting
-    </label>
+      <label for="radio{{category.id}}">
+        <span class="radio-inner-circle"></span>
+        {{category.name}}
+      </label>
+    </a>
+    {% endfor %}
   </div>
 
   <div class="row row-cols-1 row-cols-md-2">
-    <a href="/detail">
-      <div class="col mb-4" href="/detail">
-        <div class="card">
-          <img src="../static/img/sale_1.jpg" class="card-img-top" alt="..." />
-          <div class="card-body">
-            <h5 class="card-title">APEX TABLE LAMP</h5>
-            <p class="card-text">
-              Taking cues from the classic Banker’s Light, British designer John
-              Tree merged archetypal references with his contemporary, colourful
-              sensibility to create the Apex Lamp collection. The folded steel
-              shades create a peaked roofline silhouette, providing the
-              inspiration behind the series’
-            </p>
-            <p class="card-text">$ 200.00</p>
-          </div>
-        </div>
-      </div>
-    </a>
-    <a href="/detail">
+    {% for product in products %}
+    <a>
       <div class="col mb-4">
         <div class="card">
-          <img src="../static/img/sale_2.jpg" class="card-img-top" alt="..." />
+          <img src="{{product.image}}" class="card-img-top" alt="..." />
           <div class="card-body">
-            <h5 class="card-title">PALISSADE BENCH</h5>
-            <p class="card-text">
-              Palissade is a collection of outdoor furniture designed by Ronan
-              and Erwan Bouroullec for HAY. The collection was designed to fit a
-              wide variety of environments: cafés, restaurants, gardens,
-              terraces and balconies. The construction allows a wide range of
-              typologies with a common formal language.
-            </p>
-            <p class="card-text">$ 400.00</p>
+            <h5 class="card-title">{{product.name}}</h5>
+            <p class="card-text">{{product.description}}</p>
+            <p class="card-text">{{product.price}}</p>
           </div>
         </div>
       </div>
     </a>
-    <a href="/detail">
-      <div class="col mb-4">
-        <div class="card">
-          <img src="../static/img/sale_3.jpg" class="card-img-top" alt="..." />
-          <div class="card-body">
-            <h5 class="card-title">PALISSADE SUN LOUNGE</h5>
-            <p class="card-text">
-              Introducing the newest design in the Palissade collection, the Sun
-              Lounge. Palissade is a collection of outdoor furniture designed by
-              Ronan and Erwan Bouroullec for HAY. The collection was designed to
-              fit a wide variety of environments: cafés, restaurants.
-            </p>
-            <p class="card-text">$ 600.00</p>
-          </div>
-        </div>
-      </div>
-    </a>
-    <a href="/detail">
-      <div class="col mb-4">
-        <div class="card">
-          <img src="../static/img/sale_4.jpg" class="card-img-top" alt="..." />
-          <div class="card-body">
-            <h5 class="card-title">COPENHAGUE ROUND 70</h5>
-            <p class="card-text">
-              Copenhague Round Table CPH20 is designed by Ronan and Erwan
-              Bouroullec for the new buildings at the University of Copenhagen.
-              The table are available in stained, soap-finished and lacquered
-              oak and available in several sizes.
-            </p>
-            <p class="card-text">$ 900.00</p>
-          </div>
-        </div>
-      </div>
-    </a>
+    {% endfor %}
   </div>
 </section>
 
