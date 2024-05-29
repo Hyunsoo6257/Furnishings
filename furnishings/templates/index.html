@@ -5,12 +5,31 @@
   class="img-fluid"
   id="main_banner"
   alt="..."
+  style="display: none"
 />
 {% endblock %} {% block main %}
 <!-- marketing information -->
 <section>
-  <!--Sale Item-->
-  <h1>Sale</h1>
+  <!--Radio group-->
+  <div class="radio-group">
+    <input class="radio-input" name="radio-group" id="radio1" type="radio" />
+    <label class="radio-label" for="radio1">
+      <span class="radio-inner-circle"></span>
+      Living
+    </label>
+
+    <input class="radio-input" name="radio-group" id="radio2" type="radio" />
+    <label class="radio-label" for="radio2">
+      <span class="radio-inner-circle"></span>
+      Outdoor
+    </label>
+
+    <input class="radio-input" name="radio-group" id="radio3" type="radio" />
+    <label class="radio-label" for="radio3">
+      <span class="radio-inner-circle"></span>
+      Lighting
+    </label>
+  </div>
 
   <div class="row row-cols-1 row-cols-md-2">
     <a href="/detail">

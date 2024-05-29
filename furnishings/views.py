@@ -1,18 +1,22 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, url_for, request, session, flash, redirect
+from .models import Category, Product, Order
+from . import db
 
 main_bp = Blueprint('main', __name__)
 
+
+# Home page
 @main_bp.route('/')
 def index():
-    return render_template('index.html')
+    categories = db.session.scalars(db.select(Category).order_by(Category.id)).all()
+    return render_template('base.html', categories=categories)
 
-@main_bp.route('/detail')
-def detail():
-    return render_template('detail.html')
+# View all the tours of a city
+@main_bp.route('/products/<int:category_id>')
+def categories(category_id):
+    products = db.session.scalars(db.select(Product).where(Product.category_id==category_id)).all()
+    return render_template('product.html', products=products)
 
-@main_bp.route('/product/<int:product_id>')
-def product(product_id):
-    return render_template('product.html')
 
 # Stubs for routes not implemented yet
 # (url_for links in the templates will fail without these routes defined)
