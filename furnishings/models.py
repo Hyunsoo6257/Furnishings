@@ -16,9 +16,6 @@ orderdetails = db.Table('orderdetails',
     db.Column('product_id',db.Integer,db.ForeignKey('products.id'),nullable=False),
     db.PrimaryKeyConstraint('order_id', 'product_id') )
 
-
-
-
 class Product(db.Model):
     __tablename__ = 'products'
     id = db.Column(db.Integer, primary_key=True)

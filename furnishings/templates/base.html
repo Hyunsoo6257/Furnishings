@@ -72,21 +72,30 @@
               <a class="nav-link" href="#">Collection</a>
             </li>
           </ul>
-          <form class="form-inline my-2 my-lg-0">
+
+          <form
+            class="form-inline my-2 my-lg-0"
+            action="{{url_for('main.search')}}"
+          >
             <input
               class="form-control mr-sm-2"
               type="search"
               placeholder="Search"
               aria-label="Search"
+              name="search"
             />
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+            <button class="btn btn-dark my-2 my-sm-0" type="submit">
               Search
             </button>
           </form>
         </div>
       </nav>
 
-      {% block head %} {% endblock %}
+      {% with messages = get_flashed_messages() %} {% if messages %}
+      <div class="alert alert-primary m-2" role="alert">
+        {% for message in messages %} {{message}} {% endfor %}
+      </div>
+      {% endif %} {% endwith %} {% block head %} {% endblock %}
     </header>
 
     <!-- main page content goes in container -->

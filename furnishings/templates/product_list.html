@@ -1,0 +1,30 @@
+{% extends 'base.html' %} {% block main %}
+<!-- display tours for the specific city -->
+<section>
+  <div class="text-dark text-center">
+    <div>
+      <h1>Select a product</h1>
+    </di
+  </div>
+  <div class="card-columns">
+    <!-- each tour is a Bootstrap card -->
+    {% for product in products %}
+    <a href="{{url_for('main.product', product_id=product.id)}}">
+      <div class="card">
+        <img
+          class="card-img-top"
+          src="{{url_for('static', filename='' + product.image)}}"
+          alt="Card image"
+        />
+        <div class="card-body">
+          <h4 class="card-title">{{product.name}}</h4>
+          <p class="card-text">{{product.description}}</p>
+        </div>
+        <div class="card-footer">
+        </div>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

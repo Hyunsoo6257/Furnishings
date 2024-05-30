@@ -1,0 +1,35 @@
+{% extends 'base.html' %}{% block main %}
+<!-- marketing information -->
+<section>
+  <div class="card mb-3 container-fluid">
+    <div class="row g-1">
+      <div class="col-md-6">
+        <img
+          src="../{{product.image}}"
+          class="img-fluid rounded-start"
+          alt="..."
+        />
+      </div>
+      <div class="col-md-6">
+        <div class="card-body">
+          <h5 class="card-title">{{product.name}}</h5>
+          <p class="card-text">{{product.description}}</p>
+          <p class="card-text">
+            <small class="text-body-secondary">{{product.price}}</small>
+          </p>
+          <form action="{{url_for('main.order')}}">
+            <input
+              type="hidden"
+              id="product_id"
+              name="product_id"
+              value="{{product.id}}"
+            />
+            <input class="btn btn-dark" type="submit" value="Add Basket" />
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
