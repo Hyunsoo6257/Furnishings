@@ -10,18 +10,23 @@ main_bp = Blueprint('main', __name__)
 # Home page
 @main_bp.route('/')
 def index():
+    category_id = request.args.get('category_id', type=int)
     categories = db.session.scalars(db.select(Category).order_by(Category.id)).all()
-    products=db.session.scalars(db.select(Product).order_by(Product.id)).all()
-    return render_template('index.html', categories=categories, products=products)
+    if category_id:
+        products = db.session.scalars(db.select(Product).where(Product.category_id == category_id).order_by(Product.id)).all()
+    else:
+        products=db.session.scalars(db.select(Product).order_by(Product.id)).all()
+    return render_template('index.html', categories=categories, products=products,category_id=category_id)
 
 # Search product
 @main_bp.route('/products')
 def search():
+    categories = db.session.scalars(db.select(Category).order_by(Category.id)).all()
     search = request.args.get('search')
     search = '%{}%'.format(search)
     products = Product.query.filter( (Product.description.like(search)) | (Product.name.like(search))
     ).all()
-    return render_template('product_list.html', products=products)
+    return render_template('product_list.html', products=products, categories=categories)
 
 # View all the products of a category
 @main_bp.route('/products/<int:category_id>')

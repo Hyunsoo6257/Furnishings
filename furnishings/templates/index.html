@@ -13,11 +13,9 @@
   <!--Radio group-->
   <div>
     {% for category in categories %}
-
-    <a href="{{url_for('main.categories', category_id=category.id)}}">
-      <input name="radio-group" type="radio" />
-
+    <a href="{{url_for('main.index', category_id=category.id)}}">
       <label for="radio{{category.id}}">
+        <input name="radio-group" type="radio" />
         <span class="radio-inner-circle"></span>
         {{category.name}}
       </label>
@@ -25,12 +23,17 @@
     {% endfor %}
   </div>
 
-  <div class="row row-cols-1 row-cols-md-2">
+  <div class="row row-cols-sm-2 row-cols-md-2 row-cols-lg-3">
     {% for product in products %}
     <a>
       <div class="col mb-4">
-        <div class="card">
-          <img src="{{product.image}}" class="card-img-top" alt="..." />
+        <div class="card" style="height: 600px">
+          <img
+            src="{{product.image}}"
+            class="card-img-top"
+            alt="..."
+            style="max-height: 350px"
+          />
           <div class="card-body">
             <h5 class="card-title">{{product.name}}</h5>
             <p class="card-text">{{product.description}}</p>
