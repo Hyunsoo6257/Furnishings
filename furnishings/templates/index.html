@@ -11,38 +11,45 @@
 <!-- marketing information -->
 <section>
   <!--Radio group-->
-  <div>
-    {% for category in categories %}
-    <a href="{{url_for('main.index', category_id=category.id)}}">
-      <label for="radio{{category.id}}">
-        <input name="radio-group" type="radio" />
-        <span class="radio-inner-circle"></span>
-        {{category.name}}
-      </label>
-    </a>
-    {% endfor %}
-  </div>
-
-  <div class="row row-cols-sm-2 row-cols-md-2 row-cols-lg-3">
-    {% for product in products %}
-    <a>
-      <div class="col mb-4">
-        <div class="card" style="height: 600px">
-          <img
-            src="{{product.image}}"
-            class="card-img-top"
-            alt="..."
-            style="max-height: 350px"
+  <div class="row mt-4">
+    <div class="col-2 d-flex flex-column">
+      {% for category in categories %}
+      <a href="{{ url_for('main.index', category_id=category.id) }}">
+        <label class="filter-label" for="radio{{ category.id }}">
+          <input
+            id="radio{{ category.id }}"
+            class="filter-input"
+            name="radio-group"
+            type="radio"
           />
-          <div class="card-body">
-            <h5 class="card-title">{{product.name}}</h5>
-            <p class="card-text">{{product.description}}</p>
-            <p class="card-text">{{product.price}}</p>
+          <span class="custom-radio"></span>
+          {{ category.name }}
+        </label>
+      </a>
+      {% endfor %}
+    </div>
+
+    <div class="col-10 row row-cols-sm-2 row-cols-md-2 row-cols-lg-3">
+      {% for product in products %}
+      <a>
+        <div class="col mb-4">
+          <div class="card" style="height: 600px">
+            <img
+              src="{{product.image}}"
+              class="card-img-top"
+              alt="..."
+              style="max-height: 230px"
+            />
+            <div class="card-body">
+              <h5 class="card-title">{{product.name}}</h5>
+              <p class="card-text">{{product.description}}</p>
+              <p class="card-text">{{"$%.2f"|format(product.price)}}</p>
+            </div>
           </div>
         </div>
-      </div>
-    </a>
-    {% endfor %}
+      </a>
+      {% endfor %}
+    </div>
   </div>
 </section>
 

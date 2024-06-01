@@ -2,14 +2,14 @@
 <!-- display contents of user basket -->
 <section>
   <div class="container">
-    <div class="row co-12 d-flex mt-2 mb-2">
+    <div class="row co-12 d-flex mt-4 mb-4">
       <h3>Shopping Basket</h3>
     </div>
     <!-- each tour on seperate row -->
     {% for product in order.products %}
     <div class="row shadow-md my-row mb-3">
       <div class="col-sm-10 card">
-        <h5 class="card-header">{{product.name}}</h5>
+        <h5 class="card-header bg-white">{{product.name}}</h5>
         <div class="card-body">
           <div class="row">
             <div class="col-2">

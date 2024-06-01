@@ -1,0 +1,56 @@
+.filter-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.filter-item {
+  margin-right: 20px;
+}
+
+.filter-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.filter-input {
+  display: none;
+}
+
+.custom-radio {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  margin-right: 10px;
+  position: relative;
+}
+
+.filter-input:checked + .custom-radio::after {
+  content: "";
+  width: 12px;
+  height: 12px;
+  background-color: #007bff;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+/* Make the entire label clickable */
+.filter-item a {
+  display: flex;
+  align-items: center;
+}

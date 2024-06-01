@@ -18,6 +18,7 @@
       <div class="card-body">
         <h4 class="card-title">{{product.name}}</h4>
         <p class="card-text">{{product.description}}</p>
+        <p class="card-text">{{"$%.2f"|format(product.price)}}</p>
       </div>
       <div class="card-footer">
         <form action="{{url_for('main.order')}}">
