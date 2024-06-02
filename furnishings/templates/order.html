@@ -30,7 +30,7 @@
       <div class="col-sm-2">
         <!-- delete item button -->
         <h5>{{"$%.2f"|format(product.price)}}</h5>
-        <p>Quantity: {{product.qty}}</p>
+        <!-- <p>Quantity: {{product.qty}}</p> -->
         <form method="POST" action="{{url_for('main.deleteorderitem')}}">
           <input type="hidden" id="id" name="id" value="{{product.id}}">
           <input type="submit" value="Delete" class="btn btn-dark mb-3">

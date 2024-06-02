@@ -10,13 +10,14 @@ main_bp = Blueprint('main', __name__)
 # Home page
 @main_bp.route('/')
 def index():
-    category_id = request.args.get('category_id', type=int)
+    selected_category_ids = request.args.getlist('category_ids', type=int)
     categories = db.session.scalars(db.select(Category).order_by(Category.id)).all()
-    if category_id:
-        products = db.session.scalars(db.select(Product).where(Product.category_id == category_id).order_by(Product.id)).all()
+    
+    if selected_category_ids:
+        products = Product.query.filter(Product.category_id.in_(selected_category_ids)).order_by(Product.id).all()
     else:
         products=db.session.scalars(db.select(Product).order_by(Product.id)).all()
-    return render_template('index.html', categories=categories, products=products,category_id=category_id)
+    return render_template('index.html', categories=categories, products=products,selected_category_ids=categories)
 
 # Search product
 @main_bp.route('/products')
@@ -42,8 +43,7 @@ def product(product_id):
     product = db.session.scalars(db.select(Product).where(Product.id==product_id)).first()
     return render_template('product_detail.html',product=product,categories=categories)
 
-# Stubs for routes not implemented yet
-# (url_for links in the templates will fail without these routes defined)
+# Adding the item to basket
 @main_bp.route('/order', methods=['POST','GET'])
 def order():
     categories = db.session.scalars(db.select(Category).order_by(Category.id)).all()
@@ -151,7 +151,7 @@ def checkout():
             try:
                 db.session.commit()
                 del session['order_id']
-                flash('Thank you! One of our team members will contact you soon.')
+                flash('Thank you for your order')
                 return redirect(url_for('main.index'))
             except:
                 flash('There was an issue completing your order')

@@ -12,33 +12,34 @@
 <section>
   <!--Radio group-->
   <div class="row mt-4">
-    <div class="col-2 d-flex flex-column">
-      {% for category in categories %}
-      <a href="{{ url_for('main.index', category_id=category.id) }}">
-        <label class="filter-label" for="radio{{ category.id }}">
+    <div class="col-2 d-flex flex-column ml-sm-4">
+      <h5 class="mb-4">Category</h5>
+      <form method="get" action="{{ url_for('main.index') }}">
+        {% for category in categories %}
+        <div class="checkbox">
           <input
-            id="radio{{ category.id }}"
-            class="filter-input"
-            name="radio-group"
-            type="radio"
+            id="item{{ category.id }}"
+            type="checkbox"
+            name="category_ids"
+            value="{{ category.id }}"
           />
-          <span class="custom-radio"></span>
-          {{ category.name }}
-        </label>
-      </a>
-      {% endfor %}
+          <label for="item{{ category.id }}">{{ category.name }}</label>
+        </div>
+        {% endfor %}
+        <button type="submit" class="mt-4 btn btn-dark">Apply</button>
+      </form>
     </div>
 
     <div class="col-10 row row-cols-sm-2 row-cols-md-2 row-cols-lg-3">
       {% for product in products %}
-      <a>
+      <a href="{{url_for('main.product', product_id=product.id)}}">
         <div class="col mb-4">
           <div class="card" style="height: 600px">
             <img
               src="{{product.image}}"
               class="card-img-top"
               alt="..."
-              style="max-height: 230px"
+              style="max-height: 280px"
             />
             <div class="card-body">
               <h5 class="card-title">{{product.name}}</h5>

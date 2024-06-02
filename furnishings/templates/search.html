@@ -9,11 +9,12 @@
   <div class="card-columns">
     <!-- each tour is a Bootstrap card -->
     {% for product in products %}
-    <div class="card">
+    <div class="card" style="height: 600px">
       <img
         class="card-img-top"
         src="{{url_for('static', filename='' + product.image)}}"
         alt="Card image"
+        style="max-height: 230px"
       />
       <div class="card-body">
         <h4 class="card-title">{{product.name}}</h4>
