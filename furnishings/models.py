@@ -22,6 +22,7 @@ class Product(db.Model):
     name = db.Column(db.String(64),nullable=False)
     description = db.Column(db.String(500), nullable=False)
     image = db.Column(db.String(60), nullable=False)
+    color = db.Column(db.String(10), nullable=False)
     price = db.Column(db.Float, nullable=False)
     date = db.Column(db.DateTime, nullable=False)
     category_id = db.Column(db.Integer, db.ForeignKey('categories.id'))
